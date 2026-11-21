@@ -1,0 +1,4 @@
+-keepattributes *Annotation*, InnerClasses
+-keepclassmembers class kotlinx.serialization.json.** { *** Companion; }
+-keepclasseswithmembers class com.apollo.overload.** { kotlinx.serialization.KSerializer serializer(...); }
+-keep,includedescriptorclasses class com.apollo.overload.**$$serializer { *; }

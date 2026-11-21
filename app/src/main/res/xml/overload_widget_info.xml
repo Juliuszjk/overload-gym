@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resizable; 6x2 by default (targetCell*), down to 4x1. minWidth/minHeight: 4x2 on a 70 x 100 dp grid for launchers
+     without targetCell support. The layout fills whatever size it gets: widget/OverloadWidget.kt (SizeMode.Exact). -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_description"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:minWidth="250dp"
+    android:minHeight="110dp"
+    android:minResizeWidth="250dp"
+    android:minResizeHeight="40dp"
+    android:targetCellWidth="6"
+    android:targetCellHeight="2"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:updatePeriodMillis="0" />

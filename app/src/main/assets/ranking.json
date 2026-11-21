@@ -1,0 +1,1072 @@
+{
+ "muscles": [
+  {
+   "key": "chest",
+   "label": "Chest",
+   "exercises": [
+    {
+     "id": "barbell-bench-press-medium-grip",
+     "name": "Barbell bench press",
+     "stretch": 6,
+     "overload": 10,
+     "lowFatigue": 4,
+     "evidence": 9,
+     "why": "The most studied chest builder; easy to load and progress for years, but it costs more fatigue than machines."
+    },
+    {
+     "id": "dumbbell-bench-press",
+     "name": "Dumbbell bench press",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 5,
+     "evidence": 8,
+     "why": "Dumbbells let the elbows travel lower, so the chest is loaded deeper into the stretch."
+    },
+    {
+     "id": "machine-chest-press",
+     "name": "Machine chest press",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 7,
+     "why": "A fixed path lets you push close to failure safely and add weight in small steps."
+    },
+    {
+     "id": "smith-bench-press",
+     "name": "Smith bench press",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "Stable bar path keeps the effort on the chest instead of balancing the weight."
+    },
+    {
+     "id": "dips-chest-version",
+     "name": "Weighted dip",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 4,
+     "evidence": 6,
+     "why": "Deep shoulder extension stretches the lower chest under heavy load, but it is hard on some shoulders."
+    },
+    {
+     "id": "cable-fly",
+     "name": "Cable fly",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Cables keep tension through the whole arc, including the stretched position."
+    },
+    {
+     "id": "pec-deck",
+     "name": "Pec deck",
+     "stretch": 7,
+     "overload": 8,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Stable and easy to take to failure with very little systemic fatigue."
+    },
+    {
+     "id": "pushups",
+     "name": "Deficit push-up",
+     "stretch": 8,
+     "overload": 5,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Push-ups taken close to failure have matched bench press for chest growth in studies; a deficit adds range."
+    },
+    {
+     "id": "dumbbell-flyes",
+     "name": "Dumbbell fly",
+     "stretch": 9,
+     "overload": 4,
+     "lowFatigue": 7,
+     "evidence": 5,
+     "why": "Big stretch at the bottom, but the load drops to almost nothing at the top."
+    }
+   ]
+  },
+  {
+   "key": "upperchest",
+   "label": "Upper chest",
+   "exercises": [
+    {
+     "id": "barbell-incline-bench-press-medium-grip",
+     "name": "Incline barbell press",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 4,
+     "evidence": 8,
+     "why": "A low incline shifts more work to the clavicular fibres without turning it into a shoulder press."
+    },
+    {
+     "id": "incline-dumbbell-press",
+     "name": "Incline dumbbell press",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 5,
+     "evidence": 8,
+     "why": "Longer range than the barbell version, with a deeper stretch at the bottom."
+    },
+    {
+     "id": "incline-machine-press",
+     "name": "Incline machine press",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Stable and simple to progress in small weight jumps."
+    },
+    {
+     "id": "incline-smith-press",
+     "name": "Incline Smith press",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "The fixed bar path lets you focus on effort rather than balance."
+    },
+    {
+     "id": "low-cable-crossover",
+     "name": "Low-to-high cable fly",
+     "stretch": 7,
+     "overload": 6,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "The upward line of pull matches the direction of the upper chest fibres."
+    },
+    {
+     "id": "incline-cable-flye",
+     "name": "Incline cable fly",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Constant cable tension with a good stretch on the upper chest."
+    },
+    {
+     "id": "incline-dumbbell-flyes",
+     "name": "Incline dumbbell fly",
+     "stretch": 9,
+     "overload": 4,
+     "lowFatigue": 7,
+     "evidence": 4,
+     "why": "Large stretch, but loading is light and fades near the top."
+    }
+   ]
+  },
+  {
+   "key": "lats",
+   "label": "Lats",
+   "exercises": [
+    {
+     "id": "lat-pulldown",
+     "name": "Lat pulldown",
+     "stretch": 8,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 8,
+     "why": "Full overhead stretch and easy to load in small steps; studies show it grows the lats comparably to pull-ups."
+    },
+    {
+     "id": "pull-up",
+     "name": "Pull-up",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 5,
+     "evidence": 8,
+     "why": "Great stretch at the bottom; progression needs added weight once reps get high."
+    },
+    {
+     "id": "one-arm-lat-pulldown",
+     "name": "Single-arm cable pulldown",
+     "stretch": 9,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Working one side lets the arm reach further overhead for a longer stretch."
+    },
+    {
+     "id": "assisted-pull-up",
+     "name": "Assisted pull-up",
+     "stretch": 8,
+     "overload": 8,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Pull-up range of motion with load you can adjust in small steps."
+    },
+    {
+     "id": "v-bar-pulldown",
+     "name": "Close-grip pulldown",
+     "stretch": 8,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "A neutral close grip allows a long pull with the elbows near the body."
+    },
+    {
+     "id": "straight-arm-pulldown",
+     "name": "Straight-arm pulldown",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Isolates the lats without the biceps limiting you; light and low fatigue."
+    },
+    {
+     "id": "straight-arm-dumbbell-pullover",
+     "name": "Dumbbell pullover",
+     "stretch": 9,
+     "overload": 5,
+     "lowFatigue": 8,
+     "evidence": 4,
+     "why": "Loads the lats with the arms overhead, though the tension shifts to the chest as well."
+    },
+    {
+     "id": "one-arm-dumbbell-row",
+     "name": "One-arm dumbbell row",
+     "stretch": 7,
+     "overload": 7,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "Long range with the free hand bracing the torso."
+    },
+    {
+     "id": "bent-over-barbell-row",
+     "name": "Barbell row",
+     "stretch": 5,
+     "overload": 8,
+     "lowFatigue": 3,
+     "evidence": 7,
+     "why": "Heavy compound pull, but lower-back fatigue limits how much volume you can do."
+    }
+   ]
+  },
+  {
+   "key": "upperback",
+   "label": "Upper back",
+   "exercises": [
+    {
+     "id": "chest-supported-row",
+     "name": "Chest-supported row",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 7,
+     "why": "Chest support removes the lower back from the lift so the upper back can be trained hard."
+    },
+    {
+     "id": "seated-cable-row",
+     "name": "Seated cable row",
+     "stretch": 7,
+     "overload": 8,
+     "lowFatigue": 7,
+     "evidence": 7,
+     "why": "Reaching forward at the start gives a long stretch with steady cable tension."
+    },
+    {
+     "id": "t-bar-row-with-handle",
+     "name": "T-bar row",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 5,
+     "evidence": 6,
+     "why": "Heavy and easy to load, with moderate lower-back demand."
+    },
+    {
+     "id": "leverage-iso-row",
+     "name": "Iso-lateral machine row",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Easy to progress and safe to take to failure."
+    },
+    {
+     "id": "dumbbell-incline-row",
+     "name": "Chest-supported dumbbell row",
+     "stretch": 7,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Dumbbells on an incline bench allow a long range without lower-back strain."
+    },
+    {
+     "id": "bent-over-barbell-row",
+     "name": "Barbell row",
+     "stretch": 5,
+     "overload": 8,
+     "lowFatigue": 3,
+     "evidence": 7,
+     "why": "Classic mass builder with a high fatigue cost."
+    },
+    {
+     "id": "shrug-machine",
+     "name": "Machine shrug",
+     "stretch": 4,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Direct work for the upper traps; heavy loads are simple to progress."
+    },
+    {
+     "id": "reverse-pec-deck",
+     "name": "Reverse pec deck",
+     "stretch": 6,
+     "overload": 7,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Targets the rear delts and mid-traps with almost no fatigue."
+    },
+    {
+     "id": "face-pull",
+     "name": "Face pull",
+     "stretch": 5,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Good for shoulder health, a weak growth stimulus on its own."
+    }
+   ]
+  },
+  {
+   "key": "sidedelts",
+   "label": "Side delts",
+   "exercises": [
+    {
+     "id": "cable-lateral-raise",
+     "name": "Cable lateral raise",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "With the cable behind the body the side delts are loaded at the bottom, where dumbbells give nothing."
+    },
+    {
+     "id": "machine-lateral-raise",
+     "name": "Machine lateral raise",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "A stable path and small weight steps make progression simple."
+    },
+    {
+     "id": "side-lateral-raise",
+     "name": "Dumbbell lateral raise",
+     "stretch": 4,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 8,
+     "why": "The most studied option, but there is almost no load in the bottom range."
+    },
+    {
+     "id": "cable-seated-lateral-raise",
+     "name": "Seated cable lateral raise",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Sitting removes body swing so the cable tension stays on the delts."
+    },
+    {
+     "id": "one-arm-incline-lateral-raise",
+     "name": "Lying incline lateral raise",
+     "stretch": 8,
+     "overload": 4,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Lying on an incline moves the hardest point to the stretched position, but loads stay very light."
+    },
+    {
+     "id": "upright-barbell-row",
+     "name": "Wide-grip upright row",
+     "stretch": 4,
+     "overload": 7,
+     "lowFatigue": 6,
+     "evidence": 5,
+     "why": "Heavier side-delt option that can bother some shoulders."
+    },
+    {
+     "id": "machine-shoulder-press",
+     "name": "Machine shoulder press",
+     "stretch": 4,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Mostly front delts; the side delts get meaningful but secondary work."
+    },
+    {
+     "id": "seated-dumbbell-press",
+     "name": "Dumbbell shoulder press",
+     "stretch": 5,
+     "overload": 8,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "Compound press with a slightly longer range than machines."
+    }
+   ]
+  },
+  {
+   "key": "reardelts",
+   "label": "Rear delts",
+   "exercises": [
+    {
+     "id": "reverse-pec-deck",
+     "name": "Reverse pec deck",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "Stable path and simple progression for direct rear-delt work."
+    },
+    {
+     "id": "cable-rear-delt-fly",
+     "name": "Cable reverse fly",
+     "stretch": 7,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Crossed cables start each rep from a stretch and keep tension throughout."
+    },
+    {
+     "id": "face-pull",
+     "name": "Face pull",
+     "stretch": 5,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Trains the rear delts together with the external rotators."
+    },
+    {
+     "id": "cable-rope-rear-delt-rows",
+     "name": "Rope rear-delt row",
+     "stretch": 5,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Wide elbows bias the rear delts in a heavier rowing pattern."
+    },
+    {
+     "id": "barbell-rear-delt-row",
+     "name": "Rear-delt barbell row",
+     "stretch": 5,
+     "overload": 8,
+     "lowFatigue": 5,
+     "evidence": 4,
+     "why": "Heavy compound option, but lower-back fatigue adds up."
+    },
+    {
+     "id": "lying-rear-delt-raise",
+     "name": "Lying rear-delt raise",
+     "stretch": 6,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Chest support removes momentum from the movement."
+    },
+    {
+     "id": "reverse-flyes",
+     "name": "Bent-over reverse fly",
+     "stretch": 5,
+     "overload": 4,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Easy to cheat with momentum and hard to progress."
+    }
+   ]
+  },
+  {
+   "key": "biceps",
+   "label": "Biceps",
+   "exercises": [
+    {
+     "id": "incline-dumbbell-curl",
+     "name": "Incline dumbbell curl",
+     "stretch": 9,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "Arms behind the body stretch the long head while it is under load."
+    },
+    {
+     "id": "preacher-curl-machine",
+     "name": "Machine preacher curl",
+     "stretch": 8,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "Hardest near the bottom, where training at long lengths seems to help growth most."
+    },
+    {
+     "id": "preacher-curl",
+     "name": "EZ-bar preacher curl",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 9,
+     "evidence": 8,
+     "why": "Preacher curls are well studied and load the elbow flexors in the stretch."
+    },
+    {
+     "id": "bayesian-cable-curl",
+     "name": "Bayesian cable curl",
+     "stretch": 9,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "The cable from behind keeps tension on the biceps in the stretched position."
+    },
+    {
+     "id": "barbell-curl",
+     "name": "Barbell curl",
+     "stretch": 5,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 7,
+     "why": "Easy to load and track over time; a staple in hypertrophy studies."
+    },
+    {
+     "id": "ez-bar-curl",
+     "name": "EZ-bar curl",
+     "stretch": 5,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 6,
+     "why": "Same as the barbell curl but kinder to the wrists."
+    },
+    {
+     "id": "biceps-cable-curl-straight-bar",
+     "name": "Cable curl",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Smooth tension through the range with small weight steps."
+    },
+    {
+     "id": "chin-up",
+     "name": "Chin-up",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 5,
+     "evidence": 6,
+     "why": "Compound pull with heavy biceps involvement."
+    },
+    {
+     "id": "hammer-curls",
+     "name": "Hammer curl",
+     "stretch": 4,
+     "overload": 7,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Shifts work toward the brachialis and brachioradialis."
+    },
+    {
+     "id": "spider-curl",
+     "name": "Spider curl",
+     "stretch": 3,
+     "overload": 6,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Hardest at the top and easy in the stretch."
+    }
+   ]
+  },
+  {
+   "key": "triceps",
+   "label": "Triceps",
+   "exercises": [
+    {
+     "id": "overhead-cable-triceps-extension",
+     "name": "Overhead cable extension",
+     "stretch": 9,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 9,
+     "why": "Maeo et al. found overhead extensions grew the triceps more than pushdowns, likely from stretching the long head."
+    },
+    {
+     "id": "standing-dumbbell-triceps-extension",
+     "name": "Overhead dumbbell extension",
+     "stretch": 9,
+     "overload": 5,
+     "lowFatigue": 8,
+     "evidence": 7,
+     "why": "Same long-head stretch as the cable version, but awkward to load heavy."
+    },
+    {
+     "id": "ez-bar-skullcrusher",
+     "name": "Skull crusher",
+     "stretch": 7,
+     "overload": 7,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Lowering the bar behind the head adds stretch to the long head."
+    },
+    {
+     "id": "close-grip-barbell-bench-press",
+     "name": "Close-grip bench press",
+     "stretch": 5,
+     "overload": 9,
+     "lowFatigue": 5,
+     "evidence": 7,
+     "why": "Heavy compound press, easy to progress."
+    },
+    {
+     "id": "triceps-v-pushdown",
+     "name": "V-bar pushdown",
+     "stretch": 4,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "Simple and low fatigue, but short on stretch for the long head."
+    },
+    {
+     "id": "triceps-pushdown-rope-attachment",
+     "name": "Rope pushdown",
+     "stretch": 4,
+     "overload": 7,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Low-fatigue isolation with a slightly longer finish than a bar."
+    },
+    {
+     "id": "dips",
+     "name": "Dip",
+     "stretch": 6,
+     "overload": 7,
+     "lowFatigue": 5,
+     "evidence": 6,
+     "why": "Heavy bodyweight press with strong triceps work."
+    },
+    {
+     "id": "triceps-dip-machine",
+     "name": "Dip machine",
+     "stretch": 5,
+     "overload": 9,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Dip pattern with adjustable load and a stable path."
+    },
+    {
+     "id": "jm-press",
+     "name": "JM press",
+     "stretch": 6,
+     "overload": 7,
+     "lowFatigue": 7,
+     "evidence": 4,
+     "why": "Hybrid of a press and an extension; heavy but technical."
+    },
+    {
+     "id": "tricep-dumbbell-kickback",
+     "name": "Dumbbell kickback",
+     "stretch": 2,
+     "overload": 4,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Tension only at the top, with very light loads."
+    }
+   ]
+  },
+  {
+   "key": "quads",
+   "label": "Quads",
+   "exercises": [
+    {
+     "id": "hack-squat",
+     "name": "Hack squat",
+     "stretch": 9,
+     "overload": 9,
+     "lowFatigue": 5,
+     "evidence": 7,
+     "why": "Deep knee bend under heavy load with the back supported."
+    },
+    {
+     "id": "barbell-full-squat",
+     "name": "Back squat (deep)",
+     "stretch": 8,
+     "overload": 9,
+     "lowFatigue": 2,
+     "evidence": 9,
+     "why": "The most proven quad builder, but also the most tiring."
+    },
+    {
+     "id": "pendulum-squat",
+     "name": "Pendulum squat",
+     "stretch": 9,
+     "overload": 9,
+     "lowFatigue": 6,
+     "evidence": 5,
+     "why": "Very deep knee range with little spine load."
+    },
+    {
+     "id": "leg-press",
+     "name": "Leg press",
+     "stretch": 7,
+     "overload": 9,
+     "lowFatigue": 6,
+     "evidence": 8,
+     "why": "Easy to load heavy and push close to failure safely."
+    },
+    {
+     "id": "leg-extension",
+     "name": "Leg extension",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 8,
+     "why": "The only way to fully train the rectus femoris; Pedrosa et al. found extra growth from emphasising the stretched range."
+    },
+    {
+     "id": "smith-machine-squat",
+     "name": "Smith squat",
+     "stretch": 8,
+     "overload": 9,
+     "lowFatigue": 5,
+     "evidence": 5,
+     "why": "A fixed bar path lets you sit deep with less balance demand."
+    },
+    {
+     "id": "bulgarian-split-squat",
+     "name": "Bulgarian split squat",
+     "stretch": 9,
+     "overload": 6,
+     "lowFatigue": 4,
+     "evidence": 6,
+     "why": "Big quad and glute stretch, though balance limits the load."
+    },
+    {
+     "id": "front-barbell-squat",
+     "name": "Front squat",
+     "stretch": 8,
+     "overload": 7,
+     "lowFatigue": 3,
+     "evidence": 6,
+     "why": "An upright torso shifts more work to the quads."
+    },
+    {
+     "id": "weighted-sissy-squat",
+     "name": "Sissy squat",
+     "stretch": 9,
+     "overload": 4,
+     "lowFatigue": 8,
+     "evidence": 4,
+     "why": "Stretches the quads with the hips extended; hard to load."
+    }
+   ]
+  },
+  {
+   "key": "hamstrings",
+   "label": "Hamstrings",
+   "exercises": [
+    {
+     "id": "seated-leg-curl",
+     "name": "Seated leg curl",
+     "stretch": 9,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 9,
+     "why": "Maeo et al. found seated curls grew the hamstrings more than lying curls because the flexed hip stretches them."
+    },
+    {
+     "id": "romanian-deadlift",
+     "name": "Romanian deadlift",
+     "stretch": 9,
+     "overload": 8,
+     "lowFatigue": 3,
+     "evidence": 8,
+     "why": "Heavy load at long hamstring lengths, with a high fatigue cost."
+    },
+    {
+     "id": "dumbbell-romanian-deadlift",
+     "name": "Dumbbell Romanian deadlift",
+     "stretch": 9,
+     "overload": 7,
+     "lowFatigue": 5,
+     "evidence": 7,
+     "why": "Same hip hinge as the barbell RDL, with grip as the usual limit."
+    },
+    {
+     "id": "lying-leg-curl",
+     "name": "Lying leg curl",
+     "stretch": 6,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "Simple and low fatigue, but the extended hip shortens the hamstrings."
+    },
+    {
+     "id": "stiff-legged-barbell-deadlift",
+     "name": "Stiff-leg deadlift",
+     "stretch": 9,
+     "overload": 7,
+     "lowFatigue": 3,
+     "evidence": 6,
+     "why": "Like the RDL with a slightly longer range from the floor."
+    },
+    {
+     "id": "standing-leg-curl",
+     "name": "Standing leg curl",
+     "stretch": 6,
+     "overload": 7,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Single-leg curl with a stable, easy-to-load path."
+    },
+    {
+     "id": "good-morning",
+     "name": "Good morning",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 4,
+     "evidence": 5,
+     "why": "Long hamstring stretch, but hard on the lower back."
+    },
+    {
+     "id": "natural-glute-ham-raise",
+     "name": "Nordic curl",
+     "stretch": 6,
+     "overload": 4,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "Strong eccentric stimulus that is very hard to scale in small steps."
+    },
+    {
+     "id": "glute-ham-raise",
+     "name": "Glute-ham raise",
+     "stretch": 6,
+     "overload": 5,
+     "lowFatigue": 7,
+     "evidence": 4,
+     "why": "Trains both hip and knee function, but needs special equipment."
+    }
+   ]
+  },
+  {
+   "key": "glutes",
+   "label": "Glutes",
+   "exercises": [
+    {
+     "id": "barbell-full-squat",
+     "name": "Deep squat",
+     "stretch": 8,
+     "overload": 9,
+     "lowFatigue": 2,
+     "evidence": 8,
+     "why": "Kubo et al. found full-depth squats grew the glutes more than half squats."
+    },
+    {
+     "id": "bulgarian-split-squat",
+     "name": "Bulgarian split squat",
+     "stretch": 9,
+     "overload": 6,
+     "lowFatigue": 4,
+     "evidence": 7,
+     "why": "Deep hip flexion under load on one leg at a time."
+    },
+    {
+     "id": "romanian-deadlift",
+     "name": "Romanian deadlift",
+     "stretch": 8,
+     "overload": 8,
+     "lowFatigue": 3,
+     "evidence": 7,
+     "why": "Hips flexed under heavy load, shared with the hamstrings."
+    },
+    {
+     "id": "hip-thrust",
+     "name": "Hip thrust",
+     "stretch": 4,
+     "overload": 9,
+     "lowFatigue": 7,
+     "evidence": 7,
+     "why": "Peak load at full hip extension; studies show glute growth similar to squats, not clearly more."
+    },
+    {
+     "id": "barbell-walking-lunge",
+     "name": "Walking lunge",
+     "stretch": 8,
+     "overload": 6,
+     "lowFatigue": 5,
+     "evidence": 6,
+     "why": "Long steps and a forward lean bias the glutes."
+    },
+    {
+     "id": "leg-press",
+     "name": "Leg press (feet high)",
+     "stretch": 7,
+     "overload": 9,
+     "lowFatigue": 6,
+     "evidence": 6,
+     "why": "A high foot position increases hip flexion under heavy, stable load."
+    },
+    {
+     "id": "back-extension",
+     "name": "45\u00b0 back extension",
+     "stretch": 7,
+     "overload": 7,
+     "lowFatigue": 7,
+     "evidence": 5,
+     "why": "Rounding the upper back shifts the work from the spine to the glutes."
+    },
+    {
+     "id": "hip-abduction-machine",
+     "name": "Hip abduction machine",
+     "stretch": 5,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Targets the upper glute (glute medius) with almost no fatigue."
+    },
+    {
+     "id": "one-legged-cable-kickback",
+     "name": "Cable kickback",
+     "stretch": 5,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Light isolation finisher, hard to load progressively."
+    }
+   ]
+  },
+  {
+   "key": "calves",
+   "label": "Calves",
+   "exercises": [
+    {
+     "id": "standing-calf-raise-machine",
+     "name": "Standing calf raise",
+     "stretch": 9,
+     "overload": 8,
+     "lowFatigue": 8,
+     "evidence": 8,
+     "why": "Kassiano et al. found reps in the stretched range grew the calves more; pause at the bottom."
+    },
+    {
+     "id": "calf-press-on-the-leg-press-machine",
+     "name": "Leg press calf raise",
+     "stretch": 9,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 6,
+     "why": "Heavy and stable, with an easy pause in the stretch."
+    },
+    {
+     "id": "seated-calf-raise-machine",
+     "name": "Seated calf raise",
+     "stretch": 7,
+     "overload": 8,
+     "lowFatigue": 9,
+     "evidence": 7,
+     "why": "The bent knee shifts the work to the soleus."
+    },
+    {
+     "id": "smith-machine-calf-raise",
+     "name": "Smith calf raise",
+     "stretch": 8,
+     "overload": 8,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Stable bar; stand on a step for a full range."
+    },
+    {
+     "id": "donkey-calf-raises",
+     "name": "Donkey calf raise",
+     "stretch": 9,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Bent hips with straight knees stretch the gastrocnemius further."
+    },
+    {
+     "id": "standing-dumbbell-calf-raise",
+     "name": "Single-leg dumbbell calf raise",
+     "stretch": 8,
+     "overload": 5,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Start with bodyweight, then add a dumbbell."
+    }
+   ]
+  },
+  {
+   "key": "abs",
+   "label": "Abs",
+   "exercises": [
+    {
+     "id": "cable-crunch",
+     "name": "Cable crunch",
+     "stretch": 7,
+     "overload": 8,
+     "lowFatigue": 8,
+     "evidence": 7,
+     "why": "Easy to load and progress like any other muscle."
+    },
+    {
+     "id": "ab-crunch-machine",
+     "name": "Machine crunch",
+     "stretch": 6,
+     "overload": 9,
+     "lowFatigue": 9,
+     "evidence": 5,
+     "why": "Stable, with small weight jumps."
+    },
+    {
+     "id": "ab-roller",
+     "name": "Ab wheel rollout",
+     "stretch": 9,
+     "overload": 5,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Long stretch on the abs, but hard to scale."
+    },
+    {
+     "id": "hanging-leg-raise",
+     "name": "Hanging leg raise",
+     "stretch": 6,
+     "overload": 6,
+     "lowFatigue": 7,
+     "evidence": 6,
+     "why": "Curl the pelvis up rather than just lifting the legs."
+    },
+    {
+     "id": "decline-crunch",
+     "name": "Weighted decline crunch",
+     "stretch": 7,
+     "overload": 7,
+     "lowFatigue": 8,
+     "evidence": 5,
+     "why": "Hold a plate to progress over time."
+    },
+    {
+     "id": "reverse-crunch",
+     "name": "Reverse crunch",
+     "stretch": 5,
+     "overload": 4,
+     "lowFatigue": 9,
+     "evidence": 4,
+     "why": "Bodyweight option that targets posterior pelvic tilt."
+    },
+    {
+     "id": "plank",
+     "name": "Plank",
+     "stretch": 3,
+     "overload": 4,
+     "lowFatigue": 8,
+     "evidence": 4,
+     "why": "A hold rather than reps; a weak growth stimulus."
+    },
+    {
+     "id": "dead-bug",
+     "name": "Dead bug",
+     "stretch": 3,
+     "overload": 3,
+     "lowFatigue": 10,
+     "evidence": 3,
+     "why": "Control drill with a low growth stimulus."
+    }
+   ]
+  }
+ ]
+}

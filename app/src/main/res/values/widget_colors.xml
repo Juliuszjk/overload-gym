@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home-screen widget colours: the app palette (ui/theme/Theme.kt), light. Night values in values-night. -->
+<resources>
+    <color name="wdg_bg">#F6F5F1</color>
+    <color name="wdg_sunk">#EBE9E4</color>
+    <color name="wdg_line">#E2DFD8</color>
+    <color name="wdg_line2">#CBC7BE</color>
+    <color name="wdg_ink">#161513</color>
+    <color name="wdg_ink2">#47433D</color>
+    <color name="wdg_mute">#7A746A</color>
+    <color name="wdg_on_ink">#F6F5F1</color>
+    <color name="wdg_h2">#EC7A1F</color>
+    <!-- h2 9 % over bg (current set), h2 35 % over line2 (current track segment). -->
+    <color name="wdg_h2_wash">#F5EADE</color>
+    <color name="wdg_h2_track">#D7AC86</color>
+    <color name="wdg_good">#2E8B4A</color>
+</resources>

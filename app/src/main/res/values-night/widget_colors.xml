@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="wdg_bg">#141311</color>
+    <color name="wdg_sunk">#0F0E0C</color>
+    <color name="wdg_line">#2B2824</color>
+    <color name="wdg_line2">#3D3933</color>
+    <color name="wdg_ink">#F3EFE7</color>
+    <color name="wdg_ink2">#C2BBAF</color>
+    <color name="wdg_mute">#8B8478</color>
+    <color name="wdg_on_ink">#141311</color>
+    <color name="wdg_h2">#F08B2D</color>
+    <color name="wdg_h2_wash">#281E14</color>
+    <color name="wdg_h2_track">#7C5631</color>
+    <color name="wdg_good">#86D394</color>
+</resources>

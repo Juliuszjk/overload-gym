@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_bg_dyn">@android:color/system_accent1_100</color>
+    <color name="icon_fg_dyn">@android:color/system_accent1_700</color>
+    <color name="icon_dot_dyn">@android:color/system_accent3_500</color>
+</resources>
