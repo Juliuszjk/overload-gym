@@ -86,6 +86,7 @@ data class PlanExercise(
  * order: plan-exercise ids in the order the session is being done (re-planned live).
  * nextUpFrom: the exercise just finished while the "Next up" screen shows, until the next one is started.
  * setCounts: per plan-exercise set-count overrides for today ("+ Set", or Skip after some sets were logged).
+ * swaps: per plan-exercise replacement for this workout only ("Replace"); the plan itself stays as it is.
  */
 @Serializable
 @Entity(tableName = "workout", indices = [Index("dayId")])
@@ -99,7 +100,17 @@ data class Workout(
     val pullFirst: Boolean = false,
     val nextUpFrom: Long? = null,
     val setCounts: Map<Long, Int> = emptyMap(),
-)
+    val swaps: Map<Long, Swap> = emptyMap(),
+) {
+    /** The day's plan rows as done in this workout: replaced rows carry the replacement's exercise and load. */
+    fun todayPlan(dayPlan: List<PlanExercise>): List<PlanExercise> = if (swaps.isEmpty()) dayPlan else dayPlan.map { p ->
+        swaps[p.id]?.let { p.copy(exerciseId = it.exerciseId, kg = it.kg, increment = it.increment, incrementPct = it.incrementPct, note = "", url = "") } ?: p
+    }
+}
+
+/** Today's replacement of a plan row: the exercise done instead, its load, load step and % increase. */
+@Serializable
+data class Swap(val exerciseId: String, val kg: Double, val increment: Double, val incrementPct: Double)
 
 @Serializable
 @Entity(tableName = "set_entry", indices = [Index("workoutId"), Index("exerciseId")])

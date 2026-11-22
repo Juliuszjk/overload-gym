@@ -35,6 +35,7 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Remove
 import androidx.compose.material.icons.outlined.Shuffle
 import androidx.compose.material.icons.outlined.SkipNext
+import androidx.compose.material.icons.outlined.SwapHoriz
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -77,6 +78,7 @@ import com.apollo.overload.data.Repository
 import com.apollo.overload.data.SetEntry
 import com.apollo.overload.data.Workout
 import com.apollo.overload.data.logSet
+import com.apollo.overload.data.replaceExercise
 import com.apollo.overload.domain.ExpectedProgress
 import com.apollo.overload.domain.OrderSwitch
 import com.apollo.overload.domain.PairOrder
@@ -130,6 +132,7 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
     var switchPrev by rememberSaveable { mutableStateOf<LongArray?>(null) }
     var howToId by rememberSaveable { mutableStateOf<Long?>(null) }
     var orderOpen by rememberSaveable { mutableStateOf(false) }
+    var replaceId by rememberSaveable { mutableStateOf<Long?>(null) }
     var busy by remember { mutableStateOf(false) }
     var logging by remember { mutableStateOf(false) }
     val writeLock = remember { Mutex() }
@@ -144,13 +147,26 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
     val exList by remember { dao.exercises() }.collectAsStateWithLifecycle(null)
     val exercises = remember(exList) { exList?.associateBy { it.id } }
     val types = remember(exercises) { exercises?.mapValues { it.value.type } }
-    val sessionExIds = remember(dayPlan, w.order) { dayPlan?.filter { it.id in w.order }?.map { it.exerciseId }?.distinct() }
+    val sessionExIds = remember(dayPlan, w.order, w.swaps) { dayPlan?.let(w::todayPlan)?.filter { it.id in w.order }?.map { it.exerciseId }?.distinct() }
     val last by produceState<Map<String, List<SetEntry>>?>(null, w.id, sessionExIds) {
         val ids = sessionExIds ?: return@produceState
         value = ids.associateWith { dao.lastSessionSets(it, w.id) }
     }
+    // For "Replace": the last finished session of every exercise done before, loaded when the sheet opens.
+    val history by produceState<Map<String, List<SetEntry>>?>(null, replaceId != null) {
+        if (replaceId == null) return@produceState
+        val finished = dao.allWorkouts().filter { it.finishedAt != null }.map { it.id }.toSet()
+        val sets = dao.allSetsNow()
+        value = withContext(Dispatchers.Default) {
+            sets.filter { it.workoutId in finished }.groupBy { it.exerciseId }.mapValues { (_, l) ->
+                val lastWorkout = l.maxBy { it.loggedAt }.workoutId
+                l.filter { it.workoutId == lastWorkout }.sortedBy { it.setIndex }
+            }
+        }
+    }
 
-    val plan = dayPlan ?: return
+    val rawPlan = dayPlan ?: return
+    val plan = remember(rawPlan, w.swaps) { w.todayPlan(rawPlan) }
     val sets = setsState ?: return
     val exMap = exercises ?: return
     val lastMap = last ?: return
@@ -199,7 +215,7 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
             writeLock.withLock {
                 repo.db.withTransaction {
                     val cur = dao.workout(w.id) ?: return@withTransaction
-                    val cs = Session(dao.dayExercisesNow(cur.dayId), cur.order, sets, types.orEmpty(), cur.setCounts)
+                    val cs = Session(cur.todayPlan(dao.dayExercisesNow(cur.dayId)), cur.order, sets, types.orEmpty(), cur.setCounts)
                     val (order, pullFirst) = change(cur, cs) ?: return@withTransaction
                     if (order != cur.order || pullFirst != cur.pullFirst) dao.setOrder(w.id, order, pullFirst)
                 }
@@ -240,7 +256,11 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
         val gen = moveGen.get()
         scope.launch {
             // Same transaction as the set, so "Next up" is saved even if the screen goes away right after.
-            val nextUp = writeLock.withLock { repo.logSet(w.id, pe, today.size, kgV, reps, finishes) { moveGen.get() == gen } }
+            val nextUp = writeLock.withLock {
+                // The row as it is now: a Replace or Undo tapped just before may not have reached this screen yet.
+                val row = dao.workout(w.id)?.let { cur -> cur.todayPlan(dao.dayExercisesNow(cur.dayId)).firstOrNull { it.id == id } } ?: pe
+                repo.logSet(w.id, row, today.size, kgV, reps, finishes) { moveGen.get() == gen }
+            }
             WidgetSync.update(context)
             draftKg = draftKg - id; draftReps = draftReps - id
             if (nextUp && moveGen.get() == gen) justDone = id
@@ -280,6 +300,11 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
         else putCounts(setCounts - id)
         clearSkip()
     }
+    /** Does plan row [id] as [exerciseId] today only (the planned exercise = back to plan). */
+    fun replace(id: Long, exerciseId: String) {
+        draftKg = draftKg - id; draftReps = draftReps - id
+        scope.launch { writeLock.withLock { repo.replaceExercise(w.id, id, exerciseId) }; WidgetSync.update(context) }
+    }
     fun deleteSet(e: SetEntry) = scope.launch {
         repo.db.withTransaction {
             dao.deleteSet(e)
@@ -296,7 +321,9 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
                     repo.db.withTransaction {
                         val cur = dao.workout(w.id) ?: return@withTransaction
                         // The plan's kg follows the load actually used (plus the jump when earned), on every day of the split.
-                        val updates = Progression.planUpdates(dao.splitExercisesNow(cur.dayId), s.logged)
+                        // A replacement's load goes to its own rows in the split; the replaced row keeps its kg.
+                        val updates = Progression.planUpdates(cur.todayPlan(dao.splitExercisesNow(cur.dayId)), s.logged)
+                            .filter { it.id !in cur.swaps }
                         if (updates.isNotEmpty()) dao.updatePlanExercises(updates)
                         dao.updateWorkout(cur.copy(finishedAt = System.currentTimeMillis()))
                     }
@@ -384,6 +411,15 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
                         )
                         Spacer(Modifier.height(12.dp))
                     }
+                    val planned = rawPlan.firstOrNull { it.id == id }?.exerciseId
+                    if (prevDone == null && id in w.swaps && planned != null && !s.isStarted(id)) {
+                        Tip(
+                            icon = { Icon(Icons.Outlined.SwapHoriz, null, Modifier.size(18.dp), tint = p.warn) },
+                            lead = "Instead of ${shortName(exMap[planned]?.name ?: planned)}.", rest = "Today only, your plan stays the same.",
+                            action = "Undo", onAction = { replace(id, planned) },
+                        )
+                        Spacer(Modifier.height(12.dp))
+                    }
                     if (prevDone != null) NextUp(
                         prev = prevDone, id = id, s = s, name = ::name, ex = ::ex, why = ::why, loadKg = curKg,
                         lastSets = lastSets(id), onAddSet = { addSet(prevDone) },
@@ -400,6 +436,7 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
                         onKg = { v -> draftKg = draftKg + (id to Progression.round2(v.coerceAtLeast(0.0))) },
                         onReps = { v -> draftReps = draftReps + (id to v.coerceAtLeast(1)) },
                         onEditSet = { editId = it.id }, onAddSet = { addSet(id) }, onSkip = { skip(id) },
+                        onReplace = if (today.isEmpty() && planned != null && exMap[planned] != null) { { replaceId = id } } else null,
                     )
                     Spacer(Modifier.height(16.dp))
                 }
@@ -453,6 +490,20 @@ internal fun SessionScreen(repo: Repository, w: Workout, onOpenPlan: () -> Unit)
                 note = pe.note, url = pe.url, onBack = { howToId = null }, onVideo = { runCatching { uri.openUri(pe.url) } },
             )
         }
+    }
+
+    replaceId?.let { rid ->
+        val planned = rawPlan.firstOrNull { it.id == rid }?.let { exMap[it.exerciseId] }
+        val current = s.planRow(rid)?.let { exMap[it.exerciseId] }
+        val open = planned != null && current != null && !s.isStarted(rid)
+        // Closed from outside (e.g. a set logged on the widget): forget it, so it doesn't reopen later.
+        LaunchedEffect(open) { if (!open) replaceId = null }
+        // Planned and today's exercises both, so no exercise ends up in two rows (one shared load per exercise).
+        val exclude = rawPlan.filter { it.id in s.order }.map { it.exerciseId }.toSet() + s.plan.map { it.exerciseId }
+        if (open) ReplaceSheet(
+            planned = planned!!, current = current!!, exclude = exclude, exercises = exList.orEmpty(),
+            history = history, onPick = { replace(rid, it) }, onClose = { replaceId = null },
+        )
     }
 
     LaunchedEffect(s.orderChanged) { if (!s.orderChanged) orderOpen = false }
@@ -557,7 +608,7 @@ private fun Hero(
     id: Long, pe: PlanExercise, ex: Exercise?, name: String, s: Session, today: List<SetEntry>, n: Int, i: Int,
     target: (Long, Int) -> Pair<Double, Int>, lastSets: List<SetEntry>,
     curKg: Double, curReps: Int, onKg: (Double) -> Unit, onReps: (Int) -> Unit, onHowTo: (() -> Unit)?,
-    onEditSet: (SetEntry) -> Unit, onAddSet: () -> Unit, onSkip: () -> Unit,
+    onEditSet: (SetEntry) -> Unit, onAddSet: () -> Unit, onSkip: () -> Unit, onReplace: (() -> Unit)?,
 ) {
     val p = LocalPalette.current
     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -623,6 +674,7 @@ private fun Hero(
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             TextAction("+ Set", onAddSet)
             TextAction("Skip exercise", onSkip)
+            if (onReplace != null) TextAction("Replace", onReplace)
         }
     }
 }

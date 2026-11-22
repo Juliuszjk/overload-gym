@@ -30,6 +30,8 @@ class Converters {
     @TypeConverter fun stringToIds(s: String): List<Long> = json.decodeFromString(s)
     @TypeConverter fun countsToString(v: Map<Long, Int>): String = json.encodeToString(v)
     @TypeConverter fun stringToCounts(s: String): Map<Long, Int> = json.decodeFromString(s)
+    @TypeConverter fun swapsToString(v: Map<Long, Swap>): String = json.encodeToString(v)
+    @TypeConverter fun stringToSwaps(s: String): Map<Long, Swap> = json.decodeFromString(s)
 }
 
 @Dao
@@ -84,6 +86,8 @@ interface GymDao {
     suspend fun setOrder(id: Long, order: List<Long>, pullFirst: Boolean) = setOrderJson(id, Converters().idsToString(order), pullFirst)
     @Query("UPDATE workout SET setCounts = :counts WHERE id = :id") suspend fun setSetCountsJson(id: Long, counts: String)
     suspend fun setSetCounts(id: Long, counts: Map<Long, Int>) = setSetCountsJson(id, Converters().countsToString(counts))
+    @Query("UPDATE workout SET swaps = :swaps WHERE id = :id") suspend fun setSwapsJson(id: Long, swaps: String)
+    suspend fun setSwaps(id: Long, swaps: Map<Long, Swap>) = setSwapsJson(id, Converters().swapsToString(swaps))
     /** Keeps an open workout of [dayId] in step with its plan: [planExerciseId] joins at the end, or leaves it. */
     @Transaction
     suspend fun syncOpenWorkout(dayId: Long, planExerciseId: Long, add: Boolean) {
@@ -132,7 +136,7 @@ interface GymDao {
 
 @Database(
     entities = [Exercise::class, Split::class, PlanDay::class, PlanExercise::class, Workout::class, SetEntry::class],
-    version = 3,
+    version = 4,
     exportSchema = true,
     autoMigrations = [AutoMigration(from = 1, to = 2)],
 )
@@ -142,7 +146,7 @@ abstract class GymDb : RoomDatabase() {
 
     companion object {
         fun create(context: Context): GymDb =
-            Room.databaseBuilder(context, GymDb::class.java, "overload.db").addMigrations(MIGRATION_2_3).build()
+            Room.databaseBuilder(context, GymDb::class.java, "overload.db").addMigrations(MIGRATION_2_3, MIGRATION_3_4).build()
     }
 }
 
@@ -157,6 +161,13 @@ val MIGRATION_2_3 = object : Migration(2, 3) {
         db.execSQL("UPDATE plan_exercise SET incrementPct = 10 WHERE exerciseId IN (SELECT id FROM exercise WHERE type = 'legs')")
         db.execSQL(SHARE_SPLIT_LOADS)
         db.execSQL("ALTER TABLE workout ADD COLUMN setCounts TEXT NOT NULL DEFAULT '{}'")
+    }
+}
+
+/** 3 -> 4: today-only exercise replacements of a workout. */
+val MIGRATION_3_4 = object : Migration(3, 4) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE workout ADD COLUMN swaps TEXT NOT NULL DEFAULT '{}'")
     }
 }
 

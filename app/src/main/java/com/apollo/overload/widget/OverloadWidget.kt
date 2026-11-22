@@ -114,7 +114,7 @@ private class Snapshot(
                 val day = repo.nextDay()
                 return Snapshot(null, emptyList(), emptyList(), exercises, emptyMap(), day, day?.let { dao.dayExercisesNow(it.id) }.orEmpty())
             }
-            val plan = dao.dayExercisesNow(w.dayId)
+            val plan = w.todayPlan(dao.dayExercisesNow(w.dayId))
             val last = plan.filter { it.id in w.order }.map { it.exerciseId }.distinct().associateWith { dao.lastSessionSets(it, w.id) }
             return Snapshot(w, plan, dao.setsNow(w.id), exercises, last, null, emptyList())
         }

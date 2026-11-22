@@ -90,7 +90,7 @@ class LogAction : ActionCallback {
         val logged = repo.db.withTransaction {
             val w = dao.openWorkoutNow()?.takeIf { it.id == workoutId } ?: return@withTransaction false
             val types = dao.allExercises().associate { it.id to it.type }
-            val s = Session(dao.dayExercisesNow(w.dayId), w.order, dao.setsNow(w.id), types, w.setCounts)
+            val s = Session(w.todayPlan(dao.dayExercisesNow(w.dayId)), w.order, dao.setsNow(w.id), types, w.setCounts)
             val pe = s.planRow(planExId) ?: return@withTransaction false
             if (s.active != planExId || s.today(planExId).size != setIndex) return@withTransaction false
             repo.logSet(w.id, pe, setIndex, kg, reps, finishes = setIndex + 1 >= s.target(planExId))

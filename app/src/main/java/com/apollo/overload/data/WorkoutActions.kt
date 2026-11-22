@@ -48,10 +48,31 @@ suspend fun Repository.logSet(
 suspend fun Repository.startExercise(workoutId: Long, id: Long): StartResult? = db.withTransaction {
     val cur = dao.workout(workoutId)?.takeIf { it.finishedAt == null } ?: return@withTransaction null
     val types = dao.allExercises().associate { it.id to it.type }
-    val s = Session(dao.dayExercisesNow(cur.dayId), cur.order, dao.setsNow(cur.id), types, cur.setCounts)
+    val s = Session(cur.todayPlan(dao.dayExercisesNow(cur.dayId)), cur.order, dao.setsNow(cur.id), types, cur.setCounts)
     if (s.isDone(id)) return@withTransaction null
     val r = s.start(id, cur.pullFirst)
     if (r.order != cur.order || r.pullFirst != cur.pullFirst) dao.setOrder(cur.id, r.order, r.pullFirst)
     dao.setNextUpFrom(cur.id, null)
     r
+}
+
+/**
+ * Replaces plan row [planExId] with [exerciseId] for workout [workoutId] only (null or the planned exercise = back to
+ * plan). The load comes from the split's row of that exercise, else its last session, else the planned load (0 for
+ * bodyweight). Does nothing once the row has logged sets.
+ */
+suspend fun Repository.replaceExercise(workoutId: Long, planExId: Long, exerciseId: String?) = db.withTransaction {
+    val cur = dao.workout(workoutId)?.takeIf { it.finishedAt == null } ?: return@withTransaction
+    if (dao.setsNow(cur.id).any { it.planExerciseId == planExId }) return@withTransaction
+    val row = dao.dayExercisesNow(cur.dayId).firstOrNull { it.id == planExId } ?: return@withTransaction
+    val swaps = if (exerciseId == null || exerciseId == row.exerciseId) cur.swaps - planExId else {
+        val shared = dao.splitExercisesNow(cur.dayId).firstOrNull { it.exerciseId == exerciseId }
+        val ex = dao.exercise(exerciseId)
+        // Never done: start from the planned load as a guess (bodyweight exercises from 0).
+        val kg = shared?.kg ?: dao.lastSessionSets(exerciseId, cur.id).maxOfOrNull { it.kg }
+            ?: if (ex?.equipment == "bodyweight") 0.0 else row.kg
+        val pct = shared?.incrementPct ?: PlanExercise.defaultPct(ex?.type)
+        cur.swaps + (planExId to Swap(exerciseId, kg, shared?.increment ?: row.increment, pct))
+    }
+    if (swaps != cur.swaps) dao.setSwaps(cur.id, swaps)
 }
